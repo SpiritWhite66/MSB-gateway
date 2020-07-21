@@ -1,0 +1,24 @@
+{
+  "gatewayApp": {
+    "channelLinked": {
+      "home": {
+        "title": "ChannelLinkeds",
+        "createLabel": "Créer un nouveau Channel Linked",
+        "createOrEditLabel": "Créer ou éditer un Channel Linked",
+        "notFound": "Aucun Channel Linked trouvé"
+      },
+      "created": "Un nouveau Channel Linked a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Channel Linked avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Channel Linked avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Channel Linked {{ id }} ?"
+      },
+      "detail": {
+        "title": "Channel Linked"
+      },
+      "name": "Name",
+      "idChannel": "Id Channel",
+      "configCommon": "Config Common"
+    }
+  }
+}

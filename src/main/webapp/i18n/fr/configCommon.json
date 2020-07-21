@@ -1,0 +1,28 @@
+{
+  "gatewayApp": {
+    "configCommon": {
+      "home": {
+        "title": "ConfigCommons",
+        "createLabel": "Créer un nouveau Config Common",
+        "createOrEditLabel": "Créer ou éditer un Config Common",
+        "notFound": "Aucun Config Common trouvé"
+      },
+      "created": "Un nouveau Config Common a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Config Common avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Config Common avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Config Common {{ id }} ?"
+      },
+      "detail": {
+        "title": "Config Common"
+      },
+      "idBot": "Id Bot",
+      "activated": "Activated",
+      "type": "Type",
+      "alias": "Alias",
+      "channelLinked": "Channel Linked",
+      "userAuthorized": "User Authorized",
+      "role": "Role"
+    }
+  }
+}

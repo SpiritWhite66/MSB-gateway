@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="configCommon">
+            <h2><span jhiTranslate="gatewayApp.configCommon.detail.title">Config Common</span> {{ configCommon.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gatewayApp.configCommon.idBot">Id Bot</span></dt>
+                <dd>
+                    <span>{{ configCommon.idBot }}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.configCommon.activated">Activated</span></dt>
+                <dd>
+                    <span>{{ configCommon.activated }}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.configCommon.type">Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'gatewayApp.TypeConfig.' + configCommon.type }}">{{ configCommon.type }}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.configCommon.alias">Alias</span></dt>
+                <dd>
+                    <span *ngFor="let alias of configCommon.aliases; let last = last">
+                        <a [routerLink]="['/alias', alias?.id, 'view']">{{ alias.alias }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.configCommon.channelLinked">Channel Linked</span></dt>
+                <dd>
+                    <span *ngFor="let channelLinked of configCommon.channelLinkeds; let last = last">
+                        <a [routerLink]="['/channel-linked', channelLinked?.id, 'view']">{{ channelLinked.idChannel }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.configCommon.userAuthorized">User Authorized</span></dt>
+                <dd>
+                    <span *ngFor="let userAuthorized of configCommon.userAuthorizeds; let last = last">
+                        <a [routerLink]="['/user-authorized', userAuthorized?.id, 'view']">{{ userAuthorized.user }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.configCommon.role">Role</span></dt>
+                <dd>
+                    <span *ngFor="let role of configCommon.roles; let last = last">
+                        <a [routerLink]="['/role', role?.id, 'view']">{{ role.name }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/config-common', configCommon.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

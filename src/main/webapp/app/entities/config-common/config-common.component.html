@@ -1,0 +1,89 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="gatewayApp.configCommon.home.title">Config Commons</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-config-common" [routerLink]="['/config-common/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="gatewayApp.configCommon.home.createLabel">
+            Create a new Config Common
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="configCommons?.length === 0">
+        <span jhiTranslate="gatewayApp.configCommon.home.notFound">No configCommons found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="configCommons && configCommons.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="gatewayApp.configCommon.idBot">Id Bot</span></th>
+                    <th scope="col" ><span jhiTranslate="gatewayApp.configCommon.activated">Activated</span></th>
+                    <th scope="col" ><span jhiTranslate="gatewayApp.configCommon.type">Type</span></th>
+                    <th scope="col" ><span jhiTranslate="gatewayApp.configCommon.alias">Alias</span></th>
+                    <th scope="col" ><span jhiTranslate="gatewayApp.configCommon.channelLinked">Channel Linked</span></th>
+                    <th scope="col" ><span jhiTranslate="gatewayApp.configCommon.userAuthorized">User Authorized</span></th>
+                    <th scope="col" ><span jhiTranslate="gatewayApp.configCommon.role">Role</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let configCommon of configCommons ;trackBy: trackId">
+                    <td><a [routerLink]="['/config-common', configCommon.id, 'view']">{{ configCommon.id }}</a></td>
+                    <td>{{ configCommon.idBot }}</td>
+                    <td>{{ configCommon.activated }}</td>
+                    <td jhiTranslate="{{ 'gatewayApp.TypeConfig.' + configCommon.type }}">{{ configCommon.type }}</td>
+                    <td>
+                        <span *ngFor="let alias of configCommon.aliases; let last = last">
+                            <a class="form-control-static" [routerLink]="['/alias', alias?.id, 'view']">{{ alias.alias }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngFor="let channelLinked of configCommon.channelLinkeds; let last = last">
+                            <a class="form-control-static" [routerLink]="['/channel-linked', channelLinked?.id, 'view']">{{ channelLinked.idChannel }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngFor="let userAuthorized of configCommon.userAuthorizeds; let last = last">
+                            <a class="form-control-static" [routerLink]="['/user-authorized', userAuthorized?.id, 'view']">{{ userAuthorized.user }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngFor="let role of configCommon.roles; let last = last">
+                            <a class="form-control-static" [routerLink]="['/role', role?.id, 'view']">{{ role.name }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/config-common', configCommon.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/config-common', configCommon.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(configCommon)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

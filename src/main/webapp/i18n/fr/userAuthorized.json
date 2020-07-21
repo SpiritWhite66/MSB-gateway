@@ -1,0 +1,24 @@
+{
+  "gatewayApp": {
+    "userAuthorized": {
+      "home": {
+        "title": "UserAuthorizeds",
+        "createLabel": "Créer un nouveau User Authorized",
+        "createOrEditLabel": "Créer ou éditer un User Authorized",
+        "notFound": "Aucun User Authorized trouvé"
+      },
+      "created": "Un nouveau User Authorized a été créé avec l'identifiant {{ param }}",
+      "updated": "Le User Authorized avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le User Authorized avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le User Authorized {{ id }} ?"
+      },
+      "detail": {
+        "title": "User Authorized"
+      },
+      "user": "User",
+      "idDiscord": "Id Discord",
+      "configCommon": "Config Common"
+    }
+  }
+}

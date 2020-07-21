@@ -1,0 +1,23 @@
+{
+  "gatewayApp": {
+    "alias": {
+      "home": {
+        "title": "Aliases",
+        "createLabel": "Créer un nouveau Alias",
+        "createOrEditLabel": "Créer ou éditer un Alias",
+        "notFound": "Aucun Alias trouvé"
+      },
+      "created": "Un nouveau Alias a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Alias avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Alias avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Alias {{ id }} ?"
+      },
+      "detail": {
+        "title": "Alias"
+      },
+      "alias": "Alias",
+      "configCommon": "Config Common"
+    }
+  }
+}

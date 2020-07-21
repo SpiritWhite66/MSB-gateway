@@ -50,6 +50,19 @@ public class CacheConfiguration {
             createCache(cm, com.msb.gateway.domain.User.class.getName());
             createCache(cm, com.msb.gateway.domain.Authority.class.getName());
             createCache(cm, com.msb.gateway.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.msb.gateway.domain.ConfigCommon.class.getName());
+            createCache(cm, com.msb.gateway.domain.ConfigCommon.class.getName() + ".aliases");
+            createCache(cm, com.msb.gateway.domain.ConfigCommon.class.getName() + ".channelLinkeds");
+            createCache(cm, com.msb.gateway.domain.ConfigCommon.class.getName() + ".userAuthorizeds");
+            createCache(cm, com.msb.gateway.domain.ConfigCommon.class.getName() + ".roles");
+            createCache(cm, com.msb.gateway.domain.ChannelLinked.class.getName());
+            createCache(cm, com.msb.gateway.domain.ChannelLinked.class.getName() + ".configCommons");
+            createCache(cm, com.msb.gateway.domain.UserAuthorized.class.getName());
+            createCache(cm, com.msb.gateway.domain.UserAuthorized.class.getName() + ".configCommons");
+            createCache(cm, com.msb.gateway.domain.Alias.class.getName());
+            createCache(cm, com.msb.gateway.domain.Alias.class.getName() + ".configCommons");
+            createCache(cm, com.msb.gateway.domain.Role.class.getName());
+            createCache(cm, com.msb.gateway.domain.Role.class.getName() + ".configCommons");
             // jhipster-needle-ehcache-add-entry
         };
     }

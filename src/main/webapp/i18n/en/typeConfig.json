@@ -1,0 +1,10 @@
+{
+  "gatewayApp": {
+    "TypeConfig": {
+      "null": "",
+      "COMMAND": "COMMAND",
+      "EVENT": "EVENT",
+      "OTHER": "OTHER"
+    }
+  }
+}
