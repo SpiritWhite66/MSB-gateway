@@ -1,0 +1,26 @@
+{
+  "gatewayApp": {
+    "birthdayPattern": {
+      "home": {
+        "title": "Patterns",
+        "createLabel": "Create a new Pattern",
+        "createOrEditLabel": "Create or edit a Pattern",
+        "notFound": "No Patterns found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Pattern {{ id }}?"
+      },
+      "detail": {
+        "title": "Pattern"
+      },
+      "message": "Message"
+    }
+  },
+  "birthdayApp": {
+    "birthdayPattern": {
+      "created": "A new Pattern is created with identifier {{ param }}",
+      "updated": "A Pattern is updated with identifier {{ param }}",
+      "deleted": "A Pattern is deleted with identifier {{ param }}"
+    }
+  }
+}

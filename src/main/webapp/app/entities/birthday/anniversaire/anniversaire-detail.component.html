@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="anniversaire">
+            <h2><span jhiTranslate="gatewayApp.birthdayAnniversaire.detail.title">Anniversaire</span> {{ anniversaire.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gatewayApp.birthdayAnniversaire.idUser">Id User</span></dt>
+                <dd>
+                    <span>{{ anniversaire.idUser }}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.birthdayAnniversaire.idGuildServer">Id Guild Server</span></dt>
+                <dd>
+                    <span>{{ anniversaire.idGuildServer }}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.birthdayAnniversaire.dateAnniversaire">Date Anniversaire</span></dt>
+                <dd>
+                    <span>{{ anniversaire.dateAnniversaire }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/anniversaire', anniversaire.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

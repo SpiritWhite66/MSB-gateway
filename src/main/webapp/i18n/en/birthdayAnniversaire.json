@@ -1,0 +1,28 @@
+{
+  "gatewayApp": {
+    "birthdayAnniversaire": {
+      "home": {
+        "title": "Anniversaires",
+        "createLabel": "Create a new Anniversaire",
+        "createOrEditLabel": "Create or edit a Anniversaire",
+        "notFound": "No Anniversaires found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Anniversaire {{ id }}?"
+      },
+      "detail": {
+        "title": "Anniversaire"
+      },
+      "idUser": "Id User",
+      "idGuildServer": "Id Guild Server",
+      "dateAnniversaire": "Date Anniversaire"
+    }
+  },
+  "birthdayApp": {
+    "birthdayAnniversaire": {
+      "created": "A new Anniversaire is created with identifier {{ param }}",
+      "updated": "A Anniversaire is updated with identifier {{ param }}",
+      "deleted": "A Anniversaire is deleted with identifier {{ param }}"
+    }
+  }
+}

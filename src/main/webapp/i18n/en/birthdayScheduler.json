@@ -1,0 +1,30 @@
+{
+  "gatewayApp": {
+    "birthdayScheduler": {
+      "home": {
+        "title": "Schedulers",
+        "createLabel": "Create a new Scheduler",
+        "createOrEditLabel": "Create or edit a Scheduler",
+        "notFound": "No Schedulers found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Scheduler {{ id }}?"
+      },
+      "detail": {
+        "title": "Scheduler"
+      },
+      "idGuildServer": "Id Guild Server",
+      "idChannel": "Id Channel",
+      "activated": "Activated",
+      "hour": "Hour",
+      "pattern": "Pattern"
+    }
+  },
+  "birthdayApp": {
+    "birthdayScheduler": {
+      "created": "A new Scheduler is created with identifier {{ param }}",
+      "updated": "A Scheduler is updated with identifier {{ param }}",
+      "deleted": "A Scheduler is deleted with identifier {{ param }}"
+    }
+  }
+}

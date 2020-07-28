@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-scheduler-heading" jhiTranslate="gatewayApp.birthdayScheduler.home.createOrEditLabel">Create or edit a Scheduler</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.birthdayScheduler.idGuildServer" for="field_idGuildServer">Id Guild Server</label>
+                    <input type="text" class="form-control" name="idGuildServer" id="field_idGuildServer"
+                           formControlName="idGuildServer"/>
+                    <div *ngIf="editForm.get('idGuildServer')!.invalid && (editForm.get('idGuildServer')!.dirty || editForm.get('idGuildServer')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('idGuildServer')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.birthdayScheduler.idChannel" for="field_idChannel">Id Channel</label>
+                    <input type="text" class="form-control" name="idChannel" id="field_idChannel"
+                           formControlName="idChannel"/>
+                    <div *ngIf="editForm.get('idChannel')!.invalid && (editForm.get('idChannel')!.dirty || editForm.get('idChannel')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('idChannel')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.birthdayScheduler.activated" for="field_activated">Activated</label>
+                    <input type="checkbox" class="form-control" name="activated" id="field_activated"
+                           formControlName="activated"/>
+                    <div *ngIf="editForm.get('activated')!.invalid && (editForm.get('activated')!.dirty || editForm.get('activated')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('activated')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.birthdayScheduler.hour" for="field_hour">Hour</label>
+                    <input type="number" class="form-control" name="hour" id="field_hour"
+                           formControlName="hour"/>
+                    <div *ngIf="editForm.get('hour')!.invalid && (editForm.get('hour')!.dirty || editForm.get('hour')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('hour')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('hour')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.birthdayScheduler.pattern" for="field_pattern">Pattern</label>
+                    <select class="form-control" id="field_pattern" name="pattern" formControlName="pattern">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="patternOption.id === editForm.get('pattern')!.value?.id ? editForm.get('pattern')!.value : patternOption" *ngFor="let patternOption of patterns; trackBy: trackById">{{ patternOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
