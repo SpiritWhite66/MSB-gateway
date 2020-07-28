@@ -3,6 +3,7 @@ import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, Validators } from '@angular/forms';
 
 import { IAnniversaire } from 'app/shared/model/birthday/anniversaire.model';
 import { AnniversaireService } from './anniversaire.service';
@@ -19,8 +20,13 @@ export class AnniversaireComponent implements OnInit, OnDestroy {
   constructor(
     protected anniversaireService: AnniversaireService,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private fb: FormBuilder
   ) {}
+
+  editForm = this.fb.group({
+    idGuildServer: [null, [Validators.required]],
+  });
 
   loadAll(): void {
     this.anniversaireService.query().subscribe((res: HttpResponse<IAnniversaire[]>) => (this.anniversaires = res.body || []));
