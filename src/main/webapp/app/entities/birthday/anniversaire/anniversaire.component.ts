@@ -17,6 +17,10 @@ export class AnniversaireComponent implements OnInit, OnDestroy {
   anniversaires?: IAnniversaire[];
   eventSubscriber?: Subscription;
 
+  editForm = this.fb.group({
+    idGuildServer: [null, [Validators.required]],
+  });
+
   constructor(
     protected anniversaireService: AnniversaireService,
     protected eventManager: JhiEventManager,
@@ -24,12 +28,14 @@ export class AnniversaireComponent implements OnInit, OnDestroy {
     private fb: FormBuilder
   ) {}
 
-  editForm = this.fb.group({
-    idGuildServer: [null, [Validators.required]],
-  });
-
   loadAll(): void {
     this.anniversaireService.query().subscribe((res: HttpResponse<IAnniversaire[]>) => (this.anniversaires = res.body || []));
+  }
+
+  loadByDiscord(): void {
+    this.anniversaireService
+      .findByIdGuildServer('test')
+      .subscribe((res: HttpResponse<IAnniversaire[]>) => (this.anniversaires = res.body || []));
   }
 
   ngOnInit(): void {
@@ -42,7 +48,6 @@ export class AnniversaireComponent implements OnInit, OnDestroy {
       this.eventManager.destroy(this.eventSubscriber);
     }
   }
-
   trackId(index: number, item: IAnniversaire): number {
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
     return item.id!;

@@ -2,7 +2,7 @@
     <h2 id="page-heading">
         <span jhiTranslate="gatewayApp.birthdayAnniversaire.home.title">Liste anniversaires</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-anniversaire" [routerLink]="['/anniversaire/new']">
+        <button id="jh-create-entity" [disabled]="editForm.invalid" class="btn btn-primary float-right jh-create-entity create-anniversaire" [routerLink]="['/anniversaire/new']">
             <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="gatewayApp.birthdayAnniversaire.home.createLabel">
             Create a new Anniversaire
@@ -17,19 +17,29 @@
     <div class="alert alert-warning" id="no-result" *ngIf="anniversaires?.length === 0">
         <span jhiTranslate="gatewayApp.birthdayAnniversaire.home.notFound">No anniversaires found</span>
     </div>
-
-    <div class="form-group">
-    	<label class="form-control-label" jhiTranslate="gatewayApp.birthdayAnniversaire.idGuildServer" for="field_idGuildServer">Id Server Discord</label>
-        <input type="text" class="form-control" name="idGuildServer" id="field_idGuildServer"
-                           formControlName="idGuildServer"/>
-       	<div *ngIf="editForm.get('idGuildServer')!.invalid && (editForm.get('idGuildServer')!.dirty || editForm.get('idGuildServer')!.touched)">
-           	<small class="form-text text-danger"
-                	*ngIf="editForm.get('idGuildServer')?.errors?.required" jhiTranslate="entity.validation.required">
-                    	This field is required.
-        	</small>
+    <hr>
+    <form name="editForm" role="form" (ngSubmit)="loadByDiscord()" [formGroup]="editForm">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label class="form-control-label sr-only" jhiTranslate="gatewayApp.birthdayAnniversaire.idGuildServer" for="field_idGuildServer">Id Server Discord</label>
+                <input type="text" class="form-control" name="idGuildServer" id="field_idGuildServer"
+                                formControlName="idGuildServer" placeholder="idGuildServer"/>
+            </div>
+            <div class="form-group col-md-2">
+                <button type="submit" id="view" [disabled]="editForm.invalid" class="btn btn-primary">
+                    <fa-icon icon="eye"></fa-icon>&nbsp;<span jhiTranslate="entity.action.view">View</span>
+                </button>
+            </div>
         </div>
-     </div>
-
+        <div class="form-group">
+            <div *ngIf="editForm.get('idGuildServer')!.invalid && (editForm.get('idGuildServer')!.dirty || editForm.get('idGuildServer')!.touched)">
+                <small class="form-text text-danger"
+                        *ngIf="editForm.get('idGuildServer')?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                </small>
+            </div>
+        </div>
+     </form>
     <div class="table-responsive" id="entities" *ngIf="anniversaires && anniversaires.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>

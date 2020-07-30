@@ -37,6 +37,12 @@ export class AnniversaireService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  findByIdGuildServer(idDiscord: string): Observable<EntityArrayResponseType> {
+    return this.http
+      .get<IAnniversaire[]>(`${this.resourceUrl}/discord/${idDiscord}`, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
