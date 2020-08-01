@@ -34,12 +34,34 @@ export class AnniversaireResolve implements Resolve<IAnniversaire> {
   }
 }
 
+@Injectable({ providedIn: 'root' })
+export class AnniversairesByDiscordResolve implements Resolve<IAnniversaire[]> {
+  constructor(private service: AnniversaireService, private router: Router) {}
+
+  resolve(route: ActivatedRouteSnapshot): Observable<IAnniversaire[]> | Observable<never> {
+    const id = route.params['id'];
+    if (id) {
+      return this.service.findByIdGuildServer(id).pipe(
+        flatMap((liste: HttpResponse<IAnniversaire[]>) => {
+          if (liste.body) {
+            return of(liste.body);
+          } else {
+            this.router.navigate(['404']);
+            return EMPTY;
+          }
+        })
+      );
+    }
+    return of([]);
+  }
+}
+
 export const anniversaireRoute: Routes = [
   {
     path: '',
     component: AnniversaireComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'gatewayApp.birthdayAnniversaire.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +73,19 @@ export const anniversaireRoute: Routes = [
       anniversaire: AnniversaireResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
+      pageTitle: 'gatewayApp.birthdayAnniversaire.home.title',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'discord/:id',
+    component: AnniversaireComponent,
+    resolve: {
+      anniversaire: AnniversairesByDiscordResolve,
+    },
+    data: {
+      authorities: [Authority.ADMIN],
       pageTitle: 'gatewayApp.birthdayAnniversaire.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +97,7 @@ export const anniversaireRoute: Routes = [
       anniversaire: AnniversaireResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'gatewayApp.birthdayAnniversaire.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +109,7 @@ export const anniversaireRoute: Routes = [
       anniversaire: AnniversaireResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'gatewayApp.birthdayAnniversaire.home.title',
     },
     canActivate: [UserRouteAccessService],

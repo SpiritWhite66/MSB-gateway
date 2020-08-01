@@ -1,0 +1,42 @@
+<div>
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">
+        <h2> Configuration du module Anniversaire </h2>
+    </a>
+
+    <div class="collapse" id="collapseForm">
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Activer</label>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputState">Channel d'ajout</label>
+                    <select id="inputState" class="form-control">
+                        <option selected>vos-dates-danniversaire</option>
+                        <option>bon-plan-et-actu</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputState">Channel d'annonce</label>
+                    <select id="inputState" class="form-control">
+                        <option selected>chat-general</option>
+                        <option>bon-plan-et-actu</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputAddress">Heure de déclenchement </label>
+                    <input type="time" class="form-control" id="inputAddress" value="08:00">
+                </div>
+            </div>
+            <div class="form-row">
+                <p class="text-secondary">
+                    Le tag [[name]] sera remplacer par le nom de la personne. <br>
+                    ** Indique que la ligne fera parti de l'ensemble qui sera répété pour chaque personne.
+                </p>
+                <textarea placeholder="Exemple : Bonjour à tous, \n Aujourd'hui c'est l'anniversaire de : \n **Joyeux Anniversaire [[name]]">
+                </textarea>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="gatewayApp.birthdayAnniversaire.home.title">Liste anniversaires</span>
+
+        <button id="jh-create-entity" [disabled]="editForm.invalid" class="btn btn-primary float-right jh-create-entity create-anniversaire" [routerLink]="['/anniversaire/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="gatewayApp.birthdayAnniversaire.home.createLabel">
+            Create a new Anniversaire
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+    <div class="alert alert-warning" id="no-result" *ngIf="anniversaires?.length === 0">
+        <span jhiTranslate="gatewayApp.birthdayAnniversaire.home.notFound">No anniversaires found</span>
+    </div>
+    <hr>
+    <form name="editForm" role="form" (ngSubmit)="loadByDiscord()" [formGroup]="editForm">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label class="form-control-label sr-only" jhiTranslate="gatewayApp.birthdayAnniversaire.idGuildServer" for="field_idGuildServer">Id Server Discord</label>
+                <input type="text" class="form-control" name="idGuildServer" id="field_idGuildServer"
+                                formControlName="idGuildServer" placeholder="idGuildServer"/>
+            </div>
+            <div class="form-group col-md-2">
+                <button type="submit" id="view" [disabled]="editForm.invalid" class="btn btn-primary">
+                    <fa-icon icon="eye"></fa-icon>&nbsp;<span jhiTranslate="entity.action.view">View</span>
+                </button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div *ngIf="editForm.get('idGuildServer')!.invalid && (editForm.get('idGuildServer')!.dirty || editForm.get('idGuildServer')!.touched)">
+                <small class="form-text text-danger"
+                        *ngIf="editForm.get('idGuildServer')?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                </small>
+            </div>
+        </div>
+     </form>
+    <div class="table-responsive" id="entities" *ngIf="anniversaires && anniversaires.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="gatewayApp.birthdayAnniversaire.idUser">Id User</span></th>
+                    <th scope="col" ><span jhiTranslate="gatewayApp.birthdayAnniversaire.idGuildServer">Id Guild Server</span></th>
+                    <th scope="col" ><span jhiTranslate="gatewayApp.birthdayAnniversaire.dateAnniversaire">Date Anniversaire</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let anniversaire of anniversaires ;trackBy: trackId">
+                    <td><a [routerLink]="['/anniversaire', anniversaire.id, 'view']">{{ anniversaire.id }}</a></td>
+                    <td>{{ anniversaire.idUser }}</td>
+                    <td>{{ anniversaire.idGuildServer }}</td>
+                    <td>{{ anniversaire.dateAnniversaire | date:'medium' }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/anniversaire', anniversaire.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/anniversaire', anniversaire.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(anniversaire)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

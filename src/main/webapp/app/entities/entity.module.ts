@@ -6,15 +6,7 @@ import { RouterModule } from '@angular/router';
     RouterModule.forChild([
       {
         path: 'anniversaire',
-        loadChildren: () => import('./birthday/anniversaire/anniversaire.module').then(m => m.BirthdayAnniversaireModule),
-      },
-      {
-        path: 'scheduler',
-        loadChildren: () => import('./birthday/scheduler/scheduler.module').then(m => m.BirthdaySchedulerModule),
-      },
-      {
-        path: 'pattern',
-        loadChildren: () => import('./birthday/pattern/pattern.module').then(m => m.BirthdayPatternModule),
+        loadChildren: () => import('./birthday/anniversaire-user/anniversaire-user.module').then(m => m.BirthdayAnniversaireUserModule),
       },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),

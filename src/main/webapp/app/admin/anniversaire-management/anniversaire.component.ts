@@ -3,7 +3,8 @@ import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { IAnniversaire } from 'app/shared/model/birthday/anniversaire.model';
 import { AnniversaireService } from './anniversaire.service';
@@ -16,15 +17,18 @@ import { AnniversaireDeleteDialogComponent } from './anniversaire-delete-dialog.
 export class AnniversaireComponent implements OnInit, OnDestroy {
   anniversaires?: IAnniversaire[];
   eventSubscriber?: Subscription;
+  idDiscord?: string | null;
+  paramJson?: IAnniversaire[];
 
-  editForm = this.fb.group({
-    idGuildServer: [null, [Validators.required]],
+  editForm: FormGroup = this.fb.group({
+    idGuildServer: [this.idDiscord, [Validators.required]],
   });
 
   constructor(
     protected anniversaireService: AnniversaireService,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
+    protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
 
@@ -33,13 +37,26 @@ export class AnniversaireComponent implements OnInit, OnDestroy {
   }
 
   loadByDiscord(): void {
-    this.anniversaireService
-      .findByIdGuildServer('test')
-      .subscribe((res: HttpResponse<IAnniversaire[]>) => (this.anniversaires = res.body || []));
+    this.idDiscord = this.editForm.get(['idGuildServer'])!.value;
+    if (this.idDiscord) {
+      this.anniversaireService
+        .findByIdGuildServer(this.idDiscord)
+        .subscribe((res: HttpResponse<IAnniversaire[]>) => (this.anniversaires = res.body || []));
+    }
   }
 
   ngOnInit(): void {
-    this.loadAll();
+    this.activatedRoute.data.subscribe(({ anniversaire }) => {
+      this.paramJson = anniversaire;
+      if (anniversaire !== undefined && Array.length > 0) {
+        this.anniversaires = anniversaire;
+        this.updateForm(this.activatedRoute.snapshot.params['id']);
+      } else {
+        this.loadAll();
+      }
+      this.updateForm(this.activatedRoute.snapshot.params['id']);
+    });
+
     this.registerChangeInAnniversaires();
   }
 
@@ -51,6 +68,12 @@ export class AnniversaireComponent implements OnInit, OnDestroy {
   trackId(index: number, item: IAnniversaire): number {
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
     return item.id!;
+  }
+
+  updateForm(idDiscord: string): void {
+    this.editForm.patchValue({
+      idGuildServer: idDiscord,
+    });
   }
 
   registerChangeInAnniversaires(): void {

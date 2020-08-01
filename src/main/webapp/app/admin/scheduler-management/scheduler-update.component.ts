@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 import { IScheduler, Scheduler } from 'app/shared/model/birthday/scheduler.model';
 import { SchedulerService } from './scheduler.service';
 import { IPattern } from 'app/shared/model/birthday/pattern.model';
-import { PatternService } from 'app/entities/birthday/pattern/pattern.service';
+import { PatternService } from '../pattern-management/pattern.service';
 
 @Component({
   selector: 'jhi-scheduler-update',
